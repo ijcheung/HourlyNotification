@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hourly Notification</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- Preferences -->
+    <string name="pref_enabled">Enabled</string>
+    <string name="pref_minute">Choose Minute</string>
+    <string name="pref_notification_options_title">Notification Options</string>
+    <string name="pref_notification_sound">Sound</string>
+    <string name="pref_notification_vibrate">Vibrate</string>
+    <string name="pref_notification_flash">Flash</string>
+    <string name="pref_notification_flash_summary">Flashes light if phone is sleeping</string>
+
+</resources>

@@ -1,0 +1,61 @@
+package com.blahbr.hourlynotification.service;
+
+import com.blahbr.hourlynotification.MainActivity;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.IBinder;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
+
+public class NotificationService extends Service {
+	
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		
+		//Retrieve Global Settings
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		
+		//Notification
+		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		int notifyID = 1;
+		Notification notification = new NotificationCompat.Builder(this)
+			.setContentTitle("Hourly Notification")
+			.setSmallIcon(android.R.drawable.ic_menu_recent_history)
+			.build();
+		
+		notification.defaults = 0;
+		notification.flags = Notification.FLAG_AUTO_CANCEL;
+		
+		if(sharedPref.getBoolean(MainActivity.PREF_KEY_SOUND, false))
+		{
+			notification.defaults |= Notification.DEFAULT_SOUND;
+		}
+		if(sharedPref.getBoolean(MainActivity.PREF_KEY_VIBRATE, false))
+		{
+			notification.defaults |= Notification.DEFAULT_VIBRATE;
+		}
+		if(sharedPref.getBoolean(MainActivity.PREF_KEY_FLASH, false))
+		{
+			notification.ledARGB = 0xffffffff;
+			notification.ledOnMS = 300;
+			notification.ledOffMS = 1000;
+			notification.flags |= Notification.FLAG_SHOW_LIGHTS;
+		}
+		
+		notificationManager.notify(notifyID, notification);
+		
+		stopSelf();
+	}
+	
+	@Override
+	public IBinder onBind(Intent intent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}
