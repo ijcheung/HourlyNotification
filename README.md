@@ -1,6 +1,6 @@
 # HourlyNotification
 
-Creative project for the [Creative, Serious and Playful Science of Android Apps](https://class.coursera.org/androidapps101-001/) on [Coursera](https://www.coursera.org).
+Creative project for the [Creative, Serious and Playful Science of Android Apps](https://www.coursera.org/course/androidapps101/) on [Coursera](https://www.coursera.org).
 
 ## Description
 Sends an hourly notification on the minute of the user's choosing.
