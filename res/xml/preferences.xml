@@ -15,5 +15,4 @@
         <CheckBoxPreference android:key="pref_key_vibrate" android:title="@string/pref_notification_vibrate" android:defaultValue="true"/>
         <CheckBoxPreference android:key="pref_key_flash" android:title="@string/pref_notification_flash" android:summary="@string/pref_notification_flash_summary" android:defaultValue="true"/>
     </PreferenceCategory>
-    
 </PreferenceScreen>

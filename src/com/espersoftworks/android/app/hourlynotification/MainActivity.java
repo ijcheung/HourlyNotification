@@ -1,4 +1,4 @@
-package com.blahbr.hourlynotification;
+package com.espersoftworks.android.app.hourlynotification;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -16,7 +16,10 @@ import android.text.InputType;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.blahbr.hourlynotification.service.NotificationService;
+import com.espersoftworks.android.app.hourlynotification.service.NotificationService;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 
 public class MainActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 	public static final String PREF_KEY_ENABLED = "pref_key_enabled";
@@ -28,6 +31,7 @@ public class MainActivity extends PreferenceActivity implements OnSharedPreferen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		addPreferencesFromResource(R.xml.preferences);
 		
 		EditTextPreference minutePicker = (EditTextPreference) findPreference(PREF_MINUTE_PICKER);
@@ -39,6 +43,16 @@ public class MainActivity extends PreferenceActivity implements OnSharedPreferen
 		InputFilter[] filters = {new InputFilter.LengthFilter(2)};
 		minutePickerEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
 		minutePickerEditText.setFilters(filters);
+		
+		AdView adView = new AdView(this, AdSize.BANNER, "ca-app-pub-2078905918254410/9975500487");
+
+        setListFooter(adView);
+
+        // Initiate a generic request to load it with an ad
+        AdRequest request = new AdRequest();
+        request.addTestDevice(AdRequest.TEST_EMULATOR);
+        request.addTestDevice("630709098A8C59B1FCD8D4266AFDCC6B");
+        adView.loadAd(request); 
 	}
 
 	private void setMinutePickerSummary() {
@@ -93,7 +107,6 @@ public class MainActivity extends PreferenceActivity implements OnSharedPreferen
 	}
 	
 	private void setNotification() {
-		//Set Alarm
 		Calendar calendar = Calendar.getInstance();
 		int minute = Integer.parseInt(getPreferenceScreen().getSharedPreferences().getString(PREF_MINUTE_PICKER, "0"));
 		

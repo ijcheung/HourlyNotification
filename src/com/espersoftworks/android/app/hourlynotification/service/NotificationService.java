@@ -1,6 +1,6 @@
-package com.blahbr.hourlynotification.service;
+package com.espersoftworks.android.app.hourlynotification.service;
 
-import com.blahbr.hourlynotification.MainActivity;
+import com.espersoftworks.android.app.hourlynotification.MainActivity;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -42,7 +42,7 @@ public class NotificationService extends Service {
 		}
 		if(sharedPref.getBoolean(MainActivity.PREF_KEY_FLASH, false))
 		{
-			notification.ledARGB = 0xffffffff;
+			notification.ledARGB = 0xff00ffff;
 			notification.ledOnMS = 300;
 			notification.ledOffMS = 1000;
 			notification.flags |= Notification.FLAG_SHOW_LIGHTS;
@@ -55,7 +55,6 @@ public class NotificationService extends Service {
 	
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }
