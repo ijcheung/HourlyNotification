@@ -1,7 +1,5 @@
 package com.espersoftworks.android.app.hourlynotification.service;
 
-import com.espersoftworks.android.app.hourlynotification.MainActivity;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -11,6 +9,9 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+
+import com.espersoftworks.android.app.hourlynotification.MainActivity;
+import com.espersoftworks.android.app.hourlynotification.R;
 
 public class NotificationService extends Service {
 	
@@ -26,7 +27,7 @@ public class NotificationService extends Service {
 		int notifyID = 1;
 		Notification notification = new NotificationCompat.Builder(this)
 			.setContentTitle("Hourly Notification")
-			.setSmallIcon(android.R.drawable.ic_menu_recent_history)
+			.setSmallIcon(R.drawable.ic_launcher)
 			.build();
 		
 		notification.defaults = 0;
