@@ -2,26 +2,30 @@ package com.espersoftworks.android.app.hourlynotification;
 
 import java.util.Calendar;
 
-import com.espersoftworks.android.app.hourlynotification.service.NotificationService;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 
-public class StartupBroadcastReciever extends BroadcastReceiver {
+import com.espersoftworks.android.app.hourlynotification.service.NotificationService;
 
+public class StartupBroadcastReciever extends BroadcastReceiver {
+	
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		//Retrieve Resources
+		Resources res = context.getResources();
+		
 		//Retrieve Global Settings
 		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 		
-		if(sharedPref.getBoolean(MainActivity.PREF_KEY_ENABLED, false)) {
+		if(sharedPref.getBoolean(res.getString(R.string.pref_key_enabled), false)) {
 			Calendar calendar = Calendar.getInstance();
-			int minute = Integer.parseInt(sharedPref.getString(MainActivity.PREF_MINUTE_PICKER, "0"));
+			int minute = Integer.parseInt(sharedPref.getString(res.getString(R.string.pref_key_minute_picker), "0"));
 			
 			if(calendar.get(Calendar.MINUTE) >= minute) {
 				calendar.add(Calendar.HOUR, 1);
